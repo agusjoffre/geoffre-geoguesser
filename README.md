@@ -9,20 +9,20 @@ algoritmo por cercania entre user.coords y localizacion.coords:
 EJEMPLO:
 `function haversineDistance(coords1, coords2){`
 `const R = 6371; // Radio de la Tierra en kilómetros`
-`const lat1 = coords1[0] _(Math.PI / 180); // Convertir a radianes`
-`const lon1 = coords1[1]_ (Math.PI / 180);`
-`const lat2 = coords2[0]_(Math.PI / 180);`
-`const lon2 = coords2[1]_(Math.PI / 180);`
+`const lat1 = coords1[0] * (Math.PI / 180); // Convertir a radianes`
+`const lon1 = coords1[1] * (Math.PI / 180);`
+`const lat2 = coords2[0] * (Math.PI / 180);`
+`const lon2 = coords2[1] * (Math.PI / 180);`
 
 `const dLat = lat2 - lat1;`
 `const dLon = lon2 - lon1;`
 
-`const a = Math.sin(dLat / 2)_Math.sin(dLat / 2) +
-Math.cos(lat1)\_Math.cos(lat2)_Math.sin(dLon / 2)\_Math.sin(dLon / 2);`
+`const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);`
 
-`const c = 2 \* Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));`
+`const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));`
 
-`const distance = R \* c;`
+`const distance = R * c;`
 
 `return distance; // Retorna la distancia en kilómetros`
 `}`
