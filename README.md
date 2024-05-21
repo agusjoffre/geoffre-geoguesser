@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Geoffre
 
-## Getting Started
+se crea instancia de partida con 10 localizaciones (cada localizacion tiene coordenadas)
+el usuario ingresa las coordenadas de cada localizacion
+se calcula la distancia entre coordenadas de localizacion y coordenadas dadas x el jugador
 
-First, run the development server:
+como se calcula?
+algoritmo por cercania entre user.coords y localizacion.coords:
+EJEMPLO:
+`function haversineDistance(coords1, coords2){`
+`const R = 6371; // Radio de la Tierra en kilómetros`
+`const lat1 = coords1[0] _(Math.PI / 180); // Convertir a radianes`
+`const lon1 = coords1[1]_ (Math.PI / 180);`
+`const lat2 = coords2[0]_(Math.PI / 180);`
+`const lon2 = coords2[1]_(Math.PI / 180);`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+`const dLat = lat2 - lat1;`
+`const dLon = lon2 - lon1;`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`const a = Math.sin(dLat / 2)_Math.sin(dLat / 2) +
+Math.cos(lat1)\_Math.cos(lat2)_Math.sin(dLon / 2)\_Math.sin(dLon / 2);`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`const c = 2 \* Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`const distance = R \* c;`
 
-## Learn More
+`return distance; // Retorna la distancia en kilómetros`
+`}`
 
-To learn more about Next.js, take a look at the following resources:
+`// Coordenadas de ejemplo`
+`const localizacion1 = [-34.60927179181695, -58.52496231370541];`
+`const userCoords = [-34.655636, -58.445317];`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`const distancia = haversineDistance(localizacion1, userCoords);`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+`console.log`(`La distancia es ${distancia.toFixed(2)} km`);
 
-## Deploy on Vercel
+con la distancia dada, se procede a dar puntaje:
+si la distancia es entre 0km y 2km el puntaje es 20mil
+si la distancia es entre 2km y 5km el puntaje es 15mil
+si la distancia es entre 5km y 10km el puntaje es 10mil
+si la distancia es entre 10km y 50km el puntaje es 8mil
+si la distancia es entre 50km y 100km el puntaje es 5mil
+si la distancia es entre 100km y 200km el puntaje es 3mil
+si la distancia es entre 200km y 500km el puntaje es 1mil
+si la distancia es entre 500km y 1000km el puntaje es 0.7mil
+si la distancia es entre 1000km y 2000km el puntaje es 0.2mil
+si la distancia es mayor a 2000km el puntaje es 0mil
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+ese puntaje se almacena en el score de la partida y al finalizar la partida, se divide por 10 para obtener el puntaje final que sera almacenado en el usuario.puntaje
