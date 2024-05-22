@@ -4,6 +4,7 @@ type ResponseMessage = {
   localization: Omit<Localization, 'lat' | 'lng' | 'displayName'> | Localization;
   message: string;
   status: number;
+  isOk: boolean;
 };
 
 export const getCoordsFromManual = async (
@@ -13,7 +14,7 @@ export const getCoordsFromManual = async (
 
   // query and define lat and lng
   const res = await fetch(queryUrl);
-  if (!res.ok) return { localization, message: res.statusText, status: res.status };
+  if (!res.ok) return { localization, message: res.statusText, status: res.status, isOk: false };
 
   const data = await res.json();
 
@@ -29,5 +30,12 @@ export const getCoordsFromManual = async (
     displayName: data[0].name,
   };
 
-  return { localization: newLocalization, message: 'success', status: 200 };
+  // only one query per second!!
+  await delay(1000);
+
+  return { localization: newLocalization, message: 'success', status: 200, isOk: true };
 };
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

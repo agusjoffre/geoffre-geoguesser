@@ -1,6 +1,8 @@
 import { ImageObject, Localization } from '@/lib/types';
 
-export const createLocalizationFromManual = (imageObject: ImageObject): Omit<Localization, 'lat' | 'lng' | 'displayName'> => {
+export const createLocalizationFromManual = (
+  imageObject: ImageObject,
+): Omit<Localization, 'lat' | 'lng' | 'displayName'> => {
   // imageObject.name is like country_region_city_specificplace_version.jpg/png
   // divide the string into parts, eliminate .jpg.
   // create an object with country, region, city, specificPlace, version

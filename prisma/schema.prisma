@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Localization {
+  id            String   @id @default(uuid())
+  country       String
+  region        String
+  city          String
+  specificPlace String
+  version       String
+  lat           Int
+  lng           Int
+  imageUrl      String
+  displayName   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
