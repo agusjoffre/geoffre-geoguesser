@@ -1,11 +1,6 @@
-import { storage } from "@/lib/firebase/firebase";
-import { getDownloadURL, listAll, ref } from "firebase/storage";
-
-type ImageObject = {
-    name: string;
-    url: string;
-}
-
+import { storage } from '@/lib/firebase/firebase';
+import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { ImageObject } from '../types';
 
 export const getManualImages = async (): Promise<ImageObject[]> => {
   const manualImagesRef = ref(storage, 'Manual');
@@ -21,11 +16,10 @@ export const getManualImages = async (): Promise<ImageObject[]> => {
       imagesWithName.push({ name: itemRef.name, url: url });
     });
 
-    await Promise.all(urlPromises); // Ensure all URLs are fetched
+    await Promise.all(urlPromises);
   } catch (err) {
     console.error(err);
   }
 
-  return imagesWithName
-
-}
+  return imagesWithName;
+};

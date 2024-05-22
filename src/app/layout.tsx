@@ -1,6 +1,7 @@
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { Ubuntu_Mono as UBUNTU } from 'next/font/google';
+
 import './globals.css';
 
 const ubuntu = UBUNTU({
