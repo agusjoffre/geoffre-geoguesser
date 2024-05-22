@@ -36,7 +36,10 @@ Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);`
 `console.log`(`La distancia es ${distancia.toFixed(2)} km`);
 
 con la distancia dada, se procede a dar puntaje:
-si la distancia es entre 0km y 2km el puntaje es 20mil
+si la distancia es entre 0km y 0.1km el puntaje es 20mil
+si la distancia es entre 0.1km y 0.3km el puntaje es 18mil
+si la distancia es entre 0.3km y 1km el puntaje es 17mil
+si la distancia es entre 1km y 2km el puntaje es 16mil
 si la distancia es entre 2km y 5km el puntaje es 15mil
 si la distancia es entre 5km y 10km el puntaje es 10mil
 si la distancia es entre 10km y 50km el puntaje es 8mil
