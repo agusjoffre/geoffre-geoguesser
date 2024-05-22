@@ -4,36 +4,7 @@ se crea instancia de partida con 10 localizaciones (cada localizacion tiene coor
 el usuario ingresa las coordenadas de cada localizacion
 se calcula la distancia entre coordenadas de localizacion y coordenadas dadas x el jugador
 
-como se calcula?
-algoritmo por cercania entre user.coords y localizacion.coords:
-EJEMPLO:
-`function haversineDistance(coords1, coords2){`
-`const R = 6371; // Radio de la Tierra en kilómetros`
-`const lat1 = coords1[0] * (Math.PI / 180); // Convertir a radianes`
-`const lon1 = coords1[1] * (Math.PI / 180);`
-`const lat2 = coords2[0] * (Math.PI / 180);`
-`const lon2 = coords2[1] * (Math.PI / 180);`
-
-`const dLat = lat2 - lat1;`
-`const dLon = lon2 - lon1;`
-
-`const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);`
-
-`const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));`
-
-`const distance = R * c;`
-
-`return distance; // Retorna la distancia en kilómetros`
-`}`
-
-`// Coordenadas de ejemplo`
-`const localizacion1 = [-34.60927179181695, -58.52496231370541];`
-`const userCoords = [-34.655636, -58.445317];`
-
-`const distancia = haversineDistance(localizacion1, userCoords);`
-
-`console.log`(`La distancia es ${distancia.toFixed(2)} km`);
+como se calcula? usando la formula harvesine
 
 con la distancia dada, se procede a dar puntaje:
 si la distancia es entre 0km y 0.1km el puntaje es 20mil
